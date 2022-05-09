@@ -32,4 +32,8 @@ class Item extends Model
             "image.mines" => "O arquivo precisa ser uma imagem do tipo PNG, JPG, JPEG ou SVG"
         ];
     }
+
+    public function order() {
+        return this->belongsTo('App\Models\Order');
+    }
 }

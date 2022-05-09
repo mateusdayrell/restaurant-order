@@ -3,84 +3,89 @@
 namespace App\Http\Controllers;
 
 use App\Models\Table;
-use App\Http\Requests\StoreTableRequest;
-use App\Http\Requests\UpdateTableRequest;
+use Illuminate\Http\Request; 
+// use App\Http\Requests\StoreTableRequest;
+// use App\Http\Requests\UpdateTableRequest;
 
 class TableController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct(Table $table) {
+        $this->table = $table;
+    }
+    
     public function index()
     {
-        //
+        $table = $this->table->all();
+        return response()->json ($table, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(Request $request)
     {
-        //
+        $request->validate($this->table->rules(), $this->table->feedback());
+
+        $table = $this->table->create([
+            'number' => $request->number,
+            'waiter' => $request->waiter,
+        ]);
+
+        return response()->json ($table, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTableRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreTableRequest $request)
+
+    public function show($id)
     {
-        //
+        $table = $this->table->find($id);
+
+        if($table === null) {
+            return response()->json(['erro' => 'Registro solicitado não existe!'], 404);
+        }
+
+        return response()->json ($table, 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Table  $table
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Table $table)
+    
+    public function update(Request $request, $id)
     {
-        //
+        $table = $this->table->find($id);
+
+        if($table === null) {
+            return response()->json(['erro' => 'Registro solicitado para atualização não existe!'], 404);
+        }
+
+        if ($request->method() === 'PATCH'){
+            $dynamicRules = array();
+
+            foreach($table->rules() as $input => $rule) {
+                //Verica se o indice da regra existe no request
+                if (array_key_exists($input, $request->all())) {
+                    $dynamicRules[$input] = $rule;
+                }
+            }
+            
+            $request->validate($dynamicRules, $table->feedback());
+
+        } else {
+            $request->validate($table->rules(), $table->feedback());
+        }
+
+        // UPDATING
+        $table->fill($request->all());
+        $table->save();
+
+        return response()->json ($table, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Table  $table
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Table $table)
+    
+    public function destroy($id)
     {
-        //
-    }
+        $table = $this->table->find($id);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTableRequest  $request
-     * @param  \App\Models\Table  $table
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateTableRequest $request, Table $table)
-    {
-        //
-    }
+        if($table === null) {
+            return response()->json(['erro' => 'Registro solicitado para exclusão não existe!'], 404);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Table  $table
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Table $table)
-    {
-        //
+        $table->delete();
+        return ['msg' =>'Pedido removido com sucesso'];
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItensTable extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateItensTable extends Migration
      */
     public function up()
     {
-        Schema::create('itens', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name', 20)->unique();
             $table->integer('type');
             $table->float('price');
-            $table->string('description', 100);
+            $table->string('description', 100)->nullable();
             $table->boolean('avaliable');
             $table->string('image', 100)->nullable();
             $table->timestamps();
@@ -32,6 +32,6 @@ class CreateItensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('itens');
+        Schema::dropIfExists('items');
     }
 }

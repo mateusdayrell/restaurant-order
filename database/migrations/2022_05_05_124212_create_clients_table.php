@@ -18,7 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('name', 30);
             $table->unsignedBigInteger('table_id');
             $table->float('bill')->nullable();
-            $table->boolean('confirmed');
+            $table->char('status');
             $table->timestamps();
 
             //foreign key (constraints)

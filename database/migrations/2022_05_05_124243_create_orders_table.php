@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->timestamps();
 
              //foreign key (constraints)
-             $table->foreign('item_id')->references('id')->on('itens');
+             $table->foreign('item_id')->references('id')->on('items');
              $table->foreign('client_id')->references('id')->on('clients');
         });
     }

@@ -41,7 +41,7 @@ class OrderController extends Controller
     
     public function show($id)
     {
-        $order = $this->order->find($id);
+        $order = $this->order->with('item')->find($id);
 
         if($order === null) {
             return response()->json(['erro' => 'Registro solicitado não existe!'], 404);

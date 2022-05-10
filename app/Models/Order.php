@@ -18,7 +18,7 @@ class Order extends Model
             "status" => "required",
             "qtd" => "required",
             "value" => "required",
-        ];
+        ]; 
     }
 
     public function feedback() {
@@ -28,10 +28,12 @@ class Order extends Model
     }
 
     public function item() {
-        return this->hasMany('App\Models\Item');
+        return $this->hasOne('App\Models\Item', 'id', 'item_id');
+        // hasOne('Class', 'class_fK', local_pk);
     }
 
     public function client() {
-        return this->belongsTo('App\Models\Client');
+        return $this->belongsTo('App\Models\Client');
+        // belongsTo('Class', 'local_fk', 'class_pk');
     }
 }

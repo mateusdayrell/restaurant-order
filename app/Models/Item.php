@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Order;
 
 class Item extends Model
 {
@@ -33,7 +34,12 @@ class Item extends Model
         ];
     }
 
-    public function order() {
-        return this->belongsTo('App\Models\Order');
+    //belongsToMany('Class', 'auxiliar_table') or
+    //belongsToMany('Class', 'auxiliar_table', 'claass_fk(item_id)', 'class_pk_foreing(order_id or id)');
+
+    public function getOrder($id) {
+        $order = Order::where('item_id', '=', $id)->get();
+        $order->toArray();
+        return $order;
     }
 }

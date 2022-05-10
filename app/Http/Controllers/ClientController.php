@@ -39,7 +39,7 @@ class ClientController extends Controller
 
     public function show($id)
     {
-        $client = $this->client->find($id);
+        $client = $this->client->with('table')->with('orders')->find($id);
 
         if($client === null) {
             return response()->json(['erro' => 'Registro solicitado não existe!'], 404);

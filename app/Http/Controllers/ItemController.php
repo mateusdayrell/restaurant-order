@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Order;
 // use App\Http\Requests\StoreItemRequest;
 // use App\Http\Requests\UpdateItemRequest;
 
@@ -16,10 +17,22 @@ class ItemController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $item = $this->item->all();
-        return response()->json ($item, 200);
+        $items = array();
+
+        if($request->has('filter')){
+            $filter = $request->filter;
+        }
+
+        $items = $this->item->all();
+
+        foreach($items as $key => $i) {
+            $iOrder = $i->getOrder($i->id);
+            $i->order = $iOrder;
+        }
+
+        return response()->json ($items, 200);
     }
 
 
@@ -57,6 +70,8 @@ class ItemController extends Controller
         if($item === null) {
             return response()->json(['erro' => 'Registro solicitado não existe!'], 404);
         }
+        $order = $item->getOrder($id);
+        $item->order = $order;
 
         return response()->json ($item, 200);
     }
@@ -120,5 +135,22 @@ class ItemController extends Controller
 
         $item->delete();
         return ['msg' =>'Item removido com sucesso'];
+    }
+
+    public function getItemWithOrders(Reequest $request) {
+        $items = array();
+
+        if($request->has('filter')){
+            $filter = $request->filter;
+        }
+
+        $items = $this->item->all();
+
+        foreach($items as $key => $i) {
+            $iOrder = $i->getOrder($i->id);
+            $i->order = $iOrder;
+        }
+
+        return response()->json ($items, 200);
     }
 }

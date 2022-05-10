@@ -25,6 +25,6 @@ class Table extends Model
     }
 
     public function client() {
-        return this->belongsTo('App\Models\Client');
+        return $this->belongsToMany('App\Models\Client');
     }
 }

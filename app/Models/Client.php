@@ -32,11 +32,13 @@ class Client extends Model
         ];
     }
 
-    public function order() {
-        return this->hasMany('App\Models\Order');
+    public function orders() {
+        return $this->hasMany('App\Models\Order', 'client_id', 'id');
+        //hasMany('Class', 'class_key_references_local', 'local_pk');
     }
 
     public function table() {
-        return this->hasOne('App\Models\Table');
+        return $this->hasOne('App\Models\Table', 'id', 'table_id');
+        //hasOne('Class', 'class_key', 'local_key_references_class');
     }
 }

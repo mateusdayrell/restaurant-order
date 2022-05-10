@@ -79,7 +79,7 @@ class TableController extends Controller
     
     public function destroy($id)
     {
-        $table = $this->table->find($id);
+        $table = $this->table->with('client')->find($id);
 
         if($table === null) {
             return response()->json(['erro' => 'Registro solicitado para exclusão não existe!'], 404);

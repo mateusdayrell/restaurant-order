@@ -16,4 +16,4 @@ It is recomendend to use Postman or Insomnia to use this aplication.
 
 ## Running the aplication
 
-To run the aplication just just type **php artisan serve** on command prompt into the aplication repository
+To run the aplication just just type **"php artisan serve"** on your command prompt into the aplication repository.

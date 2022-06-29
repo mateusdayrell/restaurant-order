@@ -4,7 +4,7 @@
 
 # Restaurant-order
 
-This aplications in a personal projetc where you can order food in a restaurant.<br>
+This aplications is a personal projetc where you can order food in a restaurant.<br>
 Tecnologies used: [Laravel](https://laravel.com/)
 
 ## Recomendation

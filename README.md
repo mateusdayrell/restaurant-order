@@ -14,7 +14,7 @@ To start using the aplication it's recomended to use [Postman](https://www.postm
 
 ### Clone repository
 ```
-[https://github.com/mateusdayrell/app-ongs.git](https://github.com/mateusdayrell/restaurant-order.git)
+https://github.com/mateusdayrell/restaurant-order.git
 ```
 
 ### Access the project folder

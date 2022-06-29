@@ -32,7 +32,7 @@ composer install
 cp .env.example .env
 ```
 
-### Generate a new key
+### Generate new key
 ```
 php artisan key:generate
 ```

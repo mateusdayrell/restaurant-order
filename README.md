@@ -1,19 +1,48 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<h4 align="center"> 
+	🚧  In development...  🚧
+</h4>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Restaurant-order
 
-## Getting started
+This aplications in a personal projetc where you can order food in a restaurant.<br>
+Tecnologies used: [Laravel](https://laravel.com/)
 
-It is recomendend to use Postman or Insomnia to use this aplication.
+## Recomendation
+To start using the aplication it's recomended to use [Postman](https://www.postman.com/downloads/) or [Insomnia](https://insomnia.rest/download).
 
-- [Postman](https://www.postman.com/downloads/).
-- [Insomnia](https://insomnia.rest/download).
+## Project setup <br>
 
-## Running the aplication
+### Clone repository
+```
+[https://github.com/mateusdayrell/app-ongs.git](https://github.com/mateusdayrell/restaurant-order.git)
+```
 
-To run the aplication just just type **"php artisan serve"** on your command prompt into the aplication repository.
+### Access the project folder
+```
+cd restaurant-order
+```
+
+### Install dependencies
+```
+composer install
+```
+
+### Copy .env.example to .env
+```
+cp .env.example .env
+```
+
+### Generate a new key
+```
+php artisan key:generate
+```
+
+### Run migrations
+```
+php artisan migrate
+```
+
+### Serve aplication
+```
+php artisan serve
+```

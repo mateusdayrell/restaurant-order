@@ -5,7 +5,7 @@
 # Restaurant-order
 
 This aplications is a personal projetc where you can order food in a restaurant.<br>
-Tecnologies used: [Laravel](https://laravel.com/)
+Technologies used: [Laravel](https://laravel.com/)
 
 ## Recomendation
 To start using the aplication it's recomended to use [Postman](https://www.postman.com/downloads/) or [Insomnia](https://insomnia.rest/download).
